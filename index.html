@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2313201B'/%3E%3Cpath d='M6 27 Q32 17 58 27' fill='none' stroke='%23C8A463' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M16 26 v9 a7 7 0 0 0 14 0 v-9 M34 26 v9 a7 7 0 0 0 14 0 v-9' fill='none' stroke='%23C8A463' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="canonical" href="https://yokefellowai.com/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yokefellowai.com/">
+<meta property="og:title" content="Yokefellow AI: I am your AI Workforce">
+<meta property="og:description" content="A manager and a team of AI employees, trained on your business and installed on a Mac you own. Nothing goes out until you approve it by text.">
+<meta property="og:image" content="https://yokefellowai.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#13201B">
+<title>Yokefellow AI</title>
+<meta name="description" content="Yokefellow AI installs a private AI workforce on a Mac you own: a manager and a team of AI employees, trained on your business. Nothing goes out until you approve it by text.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Hanken+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: "The Private Office". A quiet, editorial page with one live object (the text thread) and a ruled ledger for the investment. */
+:root{
+  --paper:#F1F1EB; --surface:#FAFAF6; --ink:#13201B; --ink-2:#36443E; --muted:#68746D;
+  --line:#D6D8CE; --brass:#8E6D35; --brass-soft:#E7DDC8; --sage:#E2E7E0;
+  --device:#0D1512; --screen:#F6F6F1; --bubble-in:#E7EBE4; --bubble-out:#1D3A2F; --bubble-out-ink:#F2F1EA;
+  --ok:#2E7452; --shadow:0 30px 60px -30px rgba(19,32,27,.35);
+  --display:"Libre Caslon Display", "Iowan Old Style", Georgia, serif;
+  --body:"Hanken Grotesk", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --step--1:clamp(.82rem,.8rem + .1vw,.88rem); --step-0:clamp(1rem,.97rem + .15vw,1.08rem);
+  --step-1:clamp(1.2rem,1.1rem + .4vw,1.4rem); --step-2:clamp(1.6rem,1.35rem + 1vw,2.2rem);
+  --step-3:clamp(2.2rem,1.7rem + 2.2vw,3.6rem); --step-4:clamp(2.9rem,2rem + 4vw,5.6rem);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0E1512; --surface:#131D19; --ink:#ECE9DF; --ink-2:#C9CBC1; --muted:#909B94;
+  --line:#26332D; --brass:#C8A463; --brass-soft:#2E2A1E; --sage:#16221D;
+  --device:#050A08; --screen:#101915; --bubble-in:#1C2924; --bubble-out:#2B5644; --bubble-out-ink:#F2F1EA;
+  --ok:#5DBB8B; --shadow:0 30px 60px -30px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0E1512; --surface:#131D19; --ink:#ECE9DF; --ink-2:#C9CBC1; --muted:#909B94;
+  --line:#26332D; --brass:#C8A463; --brass-soft:#2E2A1E; --sage:#16221D;
+  --device:#050A08; --screen:#101915; --bubble-in:#1C2924; --bubble-out:#2B5644; --bubble-out-ink:#F2F1EA;
+  --ok:#5DBB8B; --shadow:0 30px 60px -30px rgba(0,0,0,.7); color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{overflow-x:clip}
+.hero > .wrap > *,.roles .wrap > *,.head > *,.ledger > *,.founder .wrap > *,.contact .wrap > *{min-width:0}
+@media (max-width:560px){.top .btn{padding:.7em 1.05em;font-size:.86rem}.top .btn .long{display:none}}
+@media (min-width:561px){.top .btn .short{display:none}}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:var(--step-0);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px;border-radius:2px}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.05;letter-spacing:-.01em;text-wrap:balance;margin:0}
+p{margin:0;max-width:62ch}
+.eyebrow{font-family:var(--mono);font-size:var(--step--1);letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+.btn{display:inline-flex;align-items:center;gap:.6em;font-weight:600;text-decoration:none;border-radius:999px;padding:.95em 1.5em;font-size:.98rem;transition:transform .2s ease, background .2s ease}
+.btn-primary{background:var(--ink);color:var(--paper)}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-quiet{border:1px solid var(--line);color:var(--ink)}
+.btn-quiet:hover{border-color:var(--ink)}
+
+/* Header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--paper) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:34px;height:auto;color:var(--ink)}
+.brand span{font-family:var(--display);font-size:1.35rem;letter-spacing:.01em}
+.brand sup{font-family:var(--body);font-size:.55rem;color:var(--muted);margin-left:1px}
+nav.links{display:flex;gap:28px;font-size:.92rem;color:var(--ink-2)}
+nav.links a{text-decoration:none}
+nav.links a:hover{color:var(--ink)}
+@media (max-width:860px){nav.links{display:none}}
+
+/* Hero */
+.hero{padding-block:clamp(48px,8vw,104px) clamp(56px,8vw,96px)}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,6vw,88px);align-items:center}
+@media (max-width:920px){.hero .wrap{grid-template-columns:minmax(0,1fr)}}
+.hero h1{font-size:var(--step-4);margin-block:22px 26px}
+.hero h1 em{font-style:italic;color:var(--brass)}
+.hero .lede{font-size:var(--step-1);line-height:1.5;color:var(--ink-2);max-width:34ch}
+.hero .cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+.hero .fine{margin-top:28px;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:var(--step--1);color:var(--muted)}
+.hero .fine span{display:inline-flex;align-items:center;gap:8px}
+.hero .fine span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--brass)}
+
+/* Phone */
+.phone{justify-self:center;width:min(100%,360px);background:var(--device);border-radius:46px;padding:12px;box-shadow:var(--shadow)}
+.phone .screen{background:var(--screen);border-radius:36px;overflow:hidden}
+.phone .bar{display:flex;align-items:center;gap:10px;padding:18px 18px 12px;border-bottom:1px solid var(--line)}
+.phone .avatar{width:34px;height:34px;border-radius:50%;background:var(--ink);display:grid;place-items:center;color:var(--paper)}
+.phone .avatar svg{width:20px}
+.phone .who{line-height:1.2}
+.phone .who b{display:block;font-size:.9rem}
+.phone .who small{font-size:.72rem;color:var(--muted)}
+.thread{padding:14px 14px 18px;display:flex;flex-direction:column;gap:10px;font-size:.84rem;line-height:1.45}
+.stamp{align-self:center;font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.04em}
+.msg{max-width:88%;padding:10px 13px;border-radius:18px;background:var(--bubble-in);color:var(--ink)}
+.msg.out{align-self:flex-end;background:var(--bubble-out);color:var(--bubble-out-ink);border-bottom-right-radius:6px}
+.msg.in{border-bottom-left-radius:6px}
+.msg ul{margin:6px 0 0;padding-left:1.05em}
+.msg li{margin:2px 0}
+.msg .tag{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--brass);display:block;margin-bottom:3px}
+.sample{font-family:var(--mono);font-size:.68rem;color:var(--muted);text-align:center;margin-top:14px;letter-spacing:.06em}
+@keyframes rise{from{transform:translateY(8px)}to{transform:none}}
+.device-col{display:flex;flex-direction:column;align-items:center;gap:14px;justify-self:center;width:min(100%,380px)}
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:4px;border:1px solid var(--line);border-radius:999px;padding:4px;background:var(--surface)}
+.tabs button{font:inherit;font-size:.8rem;font-weight:500;color:var(--ink-2);background:transparent;border:0;border-radius:999px;padding:.45em .85em;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--ink);color:var(--paper)}
+.phone .screen{min-height:470px}
+.msg.alert .tag{color:#B4542C}
+.typing{align-self:flex-start;display:inline-flex;gap:4px;padding:12px 14px;border-radius:18px;background:var(--bubble-in)}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:blink 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,100%{opacity:.3}50%{opacity:1}}
+.pop{animation:rise .35s ease both}
+
+
+/* Sections */
+section{padding-block:clamp(64px,9vw,120px)}
+.rule{border-top:1px solid var(--line)}
+.head{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(24px,5vw,72px);align-items:end;margin-bottom:clamp(36px,5vw,64px)}
+@media (max-width:860px){.head{grid-template-columns:minmax(0,1fr)}}
+.head h2{font-size:var(--step-3);margin-top:14px}
+.head p{color:var(--ink-2);font-size:var(--step-1);line-height:1.5}
+
+/* Roles strip */
+.roles{background:var(--surface);border-block:1px solid var(--line);padding-block:clamp(40px,6vw,64px)}
+.roles .wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:clamp(24px,5vw,64px);align-items:center}
+@media (max-width:860px){.roles .wrap{grid-template-columns:minmax(0,1fr)}}
+.roles h2{font-size:var(--step-2)}
+.roles ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line)}
+@media (max-width:700px){.roles ol{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.roles li{background:var(--surface);padding:18px 16px}
+.roles li b{display:block;font-family:var(--display);font-size:1.15rem;font-weight:400;margin-bottom:4px}
+.roles li span{font-size:.86rem;color:var(--muted);line-height:1.4;display:block}
+.roles .note{grid-column:1/-1;font-size:var(--step--1);color:var(--muted)}
+
+/* Outcomes */
+.outcomes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(32px,5vw,72px)}
+@media (max-width:760px){.outcomes{grid-template-columns:minmax(0,1fr)}}
+.outcome{border-top:1px solid var(--line);padding-block:26px;display:grid;grid-template-columns:auto minmax(0,1fr);gap:18px}
+.outcome .when{font-family:var(--mono);font-size:.74rem;color:var(--brass);letter-spacing:.06em;padding-top:5px;min-width:5.6em}
+.outcome h3{font-size:var(--step-1);font-family:var(--body);font-weight:600;letter-spacing:0;line-height:1.3;margin-bottom:6px}
+.outcome p{color:var(--ink-2);font-size:.97rem}
+.outcome .tier{display:inline-block;margin-top:8px;font-size:.72rem;font-family:var(--mono);color:var(--muted);letter-spacing:.06em}
+
+/* Process */
+.process{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px;counter-reset:step}
+@media (max-width:980px){.process{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:540px){.process{grid-template-columns:minmax(0,1fr)}}
+.step{counter-increment:step;border-top:2px solid var(--ink);padding-top:18px}
+.step::before{content:counter(step,decimal-leading-zero);font-family:var(--mono);font-size:.78rem;color:var(--brass);letter-spacing:.08em}
+.step h3{font-family:var(--body);font-weight:600;font-size:1.06rem;letter-spacing:0;margin-block:10px 8px;line-height:1.3}
+.step p{font-size:.93rem;color:var(--ink-2)}
+.promise{margin-top:clamp(36px,5vw,56px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;align-items:start;background:var(--sage);border:1px solid var(--line);border-radius:4px;padding:clamp(22px,3vw,34px)}
+.promise .seal{width:64px;height:64px;border-radius:50%;border:1px solid var(--brass);display:grid;place-items:center;color:var(--brass);font-family:var(--display);font-size:1.6rem}
+.promise h3{font-size:var(--step-2);margin-bottom:8px}
+.promise p{color:var(--ink-2)}
+.promise small{display:block;margin-top:10px;color:var(--muted);font-size:var(--step--1)}
+
+/* Trust */
+.trust{background:var(--ink);color:var(--paper)}
+.trust .eyebrow{color:var(--brass)}
+.trust .head p{color:color-mix(in srgb,var(--paper) 78%,transparent)}
+.diagram{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto minmax(0,1fr);gap:14px;align-items:stretch;margin-bottom:clamp(40px,5vw,64px)}
+@media (max-width:860px){.diagram{grid-template-columns:minmax(0,1fr)}.diagram .arrow{transform:rotate(90deg);justify-self:center}}
+.node{border:1px solid color-mix(in srgb,var(--paper) 22%,transparent);border-radius:4px;padding:20px}
+.node .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--brass)}
+.node b{display:block;font-family:var(--display);font-weight:400;font-size:1.4rem;margin-block:6px}
+.node p{font-size:.9rem;color:color-mix(in srgb,var(--paper) 75%,transparent)}
+.node.you{border-color:var(--brass)}
+.arrow{align-self:center;color:var(--brass);font-family:var(--mono)}
+.trust-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:color-mix(in srgb,var(--paper) 16%,transparent)}
+@media (max-width:860px){.trust-grid{grid-template-columns:minmax(0,1fr)}}
+.trust-grid div{background:var(--ink);padding:24px 22px 26px 0}
+@media (max-width:860px){.trust-grid div{padding-right:0}}
+.trust-grid h3{font-family:var(--body);font-weight:600;font-size:1.04rem;letter-spacing:0;margin-bottom:6px}
+.trust-grid p{font-size:.93rem;color:color-mix(in srgb,var(--paper) 74%,transparent)}
+.never{margin-top:clamp(36px,5vw,52px);font-size:.95rem;color:color-mix(in srgb,var(--paper) 74%,transparent);max-width:none}
+.never b{color:var(--paper);font-weight:600}
+
+/* Investment ledger */
+.ledger{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:clamp(28px,5vw,64px);align-items:start}
+@media (max-width:900px){.ledger{grid-template-columns:minmax(0,1fr)}}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:clamp(24px,3.4vw,40px)}
+.sheet .title{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:8px}
+.sheet .title h3{font-size:var(--step-2)}
+.price{font-family:var(--display);font-size:var(--step-3);line-height:1;font-variant-numeric:tabular-nums}
+.price s{font-family:var(--body);font-size:1rem;color:var(--muted);margin-left:10px}
+.sheet .sub{font-size:var(--step--1);color:var(--muted);margin-top:6px}
+.lines{list-style:none;margin:0;padding:0}
+.lines li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;padding-block:12px;border-bottom:1px dashed var(--line);font-size:.95rem}
+.lines li span:last-child{font-family:var(--mono);font-size:.78rem;color:var(--muted);white-space:nowrap;align-self:center}
+.atcost{margin-top:18px;font-size:.9rem;color:var(--ink-2)}
+.side h3{font-size:var(--step-2);margin-bottom:14px}
+.side p{color:var(--ink-2);margin-bottom:14px}
+.side ul{margin:0 0 18px;padding-left:1.1em;color:var(--ink-2)}
+.side li{margin-block:6px}
+.side .note{font-size:var(--step--1);color:var(--muted)}
+
+/* Founder */
+.founder .wrap{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(28px,6vw,88px);align-items:start}
+@media (max-width:860px){.founder .wrap{grid-template-columns:minmax(0,1fr)}}
+.portrait{aspect-ratio:4/5;max-width:100%;background:var(--sage);border:1px solid var(--line);border-radius:4px;display:grid;place-items:center;position:relative;overflow:hidden}
+.portrait .mono{font-family:var(--display);font-size:5.5rem;color:var(--brass)}
+.portrait small{position:absolute;bottom:14px;left:16px;right:16px;font-family:var(--mono);font-size:.68rem;color:var(--muted);letter-spacing:.06em}
+.letter h2{font-size:var(--step-3);margin-block:14px 22px}
+.letter p{color:var(--ink-2);margin-bottom:16px;font-size:1.04rem}
+.letter .sig{font-family:var(--display);font-size:1.9rem;color:var(--ink);margin-top:22px}
+.letter .sig small{display:block;font-family:var(--body);font-size:.85rem;color:var(--muted)}
+.verse{margin-top:30px;border-left:2px solid var(--brass);padding-left:18px;color:var(--ink-2);font-size:.95rem}
+.verse cite{display:block;font-style:normal;font-family:var(--mono);font-size:.72rem;color:var(--muted);margin-top:6px;letter-spacing:.06em}
+
+/* FAQ */
+.faq{max-width:860px}
+.faq details{border-top:1px solid var(--line);padding-block:20px}
+.faq details:last-child{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;font-weight:600;font-size:1.06rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-family:var(--mono);color:var(--brass);font-weight:400}
+.faq details[open] summary::after{content:"−"}
+.faq details p{margin-top:12px;color:var(--ink-2)}
+
+/* Contact */
+.contact{background:var(--surface);border-top:1px solid var(--line)}
+.contact .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,72px);align-items:center}
+@media (max-width:860px){.contact .wrap{grid-template-columns:minmax(0,1fr)}}
+.contact h2{font-size:var(--step-3);margin-block:14px 18px}
+.contact p{color:var(--ink-2)}
+.card{border:1px solid var(--line);background:var(--paper);border-radius:4px;padding:clamp(22px,3vw,32px)}
+.card .k{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.card .email{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-block:10px 18px}
+.card .email code{font-family:var(--mono);font-size:1.02rem;user-select:all;word-break:break-all}
+.card button{font:inherit;font-size:.85rem;font-weight:600;border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:.45em 1em;cursor:pointer}
+.card button:hover{border-color:var(--ink)}
+.card ol{margin:0;padding-left:1.2em;color:var(--ink-2);font-size:.94rem}
+.card li{margin-block:6px}
+footer{padding-block:36px;border-top:1px solid var(--line);font-size:var(--step--1);color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
+</style>
+
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="yoke" viewBox="0 0 64 34"><path d="M3 12 Q32 2 61 12" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="M14 11 v9 a7 7 0 0 0 14 0 v-9 M36 11 v9 a7 7 0 0 0 14 0 v-9" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Yokefellow AI home"><svg aria-hidden="true"><use href="#yoke"/></svg><span>Yokefellow AI<sup>™</sup></span></a>
+    <nav class="links" aria-label="Main">
+      <a href="#work">What it does</a><a href="#process">How it works</a><a href="#trust">Security</a><a href="#investment">Investment</a><a href="#founder">About</a>
+    </nav>
+    <a class="btn btn-primary" href="#contact"><span class="long">Book a discovery call</span><span class="short">Book a call</span></a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Private AI workforce installations</p>
+      <h1>I am your <em>AI&nbsp;Workforce.</em></h1>
+      <p class="lede">A manager and a team of AI employees, trained on your business and installed on a Mac you own. They research, draft, follow up and keep watch around the clock. Nothing leaves until you approve it by text.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#contact">Book a discovery call</a>
+        <a class="btn btn-quiet" href="#work">See a day with your workforce</a>
+      </div>
+      <p class="fine"><span>Founding pricing for the first five clients</span><span>Runs on hardware you own</span><span>You approve everything</span></p>
+    </div>
+
+    <div class="device-col">
+      <div class="tabs" role="tablist" aria-label="Sample moments">
+        <button type="button" role="tab" aria-selected="true" data-s="morning">6:30 AM</button>
+        <button type="button" role="tab" aria-selected="false" data-s="precall">Before a call</button>
+        <button type="button" role="tab" aria-selected="false" data-s="postcall">After a call</button>
+        <button type="button" role="tab" aria-selected="false" data-s="watch">On watch</button>
+      </div>
+      <figure class="phone" aria-label="Sample text conversation with your AI workforce">
+        <div class="screen">
+          <div class="bar"><div class="avatar"><svg viewBox="0 0 64 34" aria-hidden="true"><use href="#yoke"/></svg></div><div class="who"><b>Your Workforce</b><small>Text message</small></div></div>
+          <div class="thread" id="thread" aria-live="polite">
+            <span class="stamp">Today 6:30 AM</span>
+            <div class="msg in"><span class="tag">Morning brief</span>Good morning. Here's today:<ul><li>3 calls. A brief on each person is below.</li><li>2 follow-ups from yesterday, drafted and ready.</li><li>New lead at 11:48 PM. Reply drafted.</li><li>🛡️ All clear overnight. Team audit passed.</li></ul></div>
+            <div class="msg out">✅ Send both follow-ups</div>
+            <div class="msg in">Done. Both sent from your inbox and logged in your CRM.</div>
+          </div>
+        </div>
+        <figcaption class="sample">Tap a moment above · sample conversations, names are illustrative</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="roles">
+  <div class="wrap">
+    <h2>It does the drafting work of a small team.</h2>
+    <ol>
+      <li><b>Manager</b><span>Your one text thread. Plans, routes and asks for approval.</span></li>
+      <li><b>Assistant</b><span>Reads your inbox and calendar. Briefs you each morning.</span></li>
+      <li><b>Sales follow-up</b><span>Recaps calls, drafts follow-ups and new-lead replies.</span></li>
+      <li><b>Marketing</b><span>Researches, then turns your recordings into posts.</span></li>
+    </ol>
+    <p class="note">Plus a research assistant and a security watch. Your people stay in charge; the workforce prepares the work.</p>
+  </div>
+</div>
+
+<section id="work">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">What it does</p><h2>Results that show up before you ask.</h2></div>
+      <p>You don't manage software. You get finished work, delivered at the moment it's useful, and you approve it with a tap.</p>
+    </div>
+    <div class="outcomes">
+      <article class="outcome"><span class="when">6:30 AM</span><div><h3>One message with your whole day</h3><p>Calls, follow-ups waiting for approval, new leads and anything that needs you, in a single brief.</p></div></article>
+      <article class="outcome"><span class="when">Pre-call</span><div><h3>Walk into every sales call knowing the prospect</h3><p>Your workforce spots the call on your calendar, researches the person's public professional footprint and sends you a one-paragraph brief.</p></div></article>
+      <article class="outcome"><span class="when">Post-call</span><div><h3>Every call gets a follow-up</h3><p>The recap, the follow-up email and your CRM notes are drafted and waiting for your ✅.</p></div></article>
+      <article class="outcome"><span class="when">Minutes</span><div><h3>New leads answered while they're still interested</h3><p>A reply in your voice is drafted within minutes of a lead arriving, day or night.</p></div></article>
+      <article class="outcome"><span class="when">Monday</span><div><h3>Know what your competitors changed</h3><p>A weekly cited report on new offers, prices and launches in your market.</p></div></article>
+      <article class="outcome"><span class="when">On watch</span><div><h3>Someone keeps an eye on your accounts</h3><p>Sign-ins, password resets and payment requests that don't fit your activity get a plain "Was this you?" text. The AI team itself is audited every day.</p></div></article>
+      <article class="outcome"><span class="when">Ongoing</span><div><h3>Old leads, worked again</h3><p>Reactivation campaigns drafted for your past leads, with a compliance check before anything reaches you.</p><span class="tier">FULL WORKFORCE</span></div></article>
+      <article class="outcome"><span class="when">Ongoing</span><div><h3>Your recordings become content</h3><p>Frameworks pulled from your talks and videos, turned into posts in your voice. Posted only after you approve.</p><span class="tier">FULL WORKFORCE</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section id="process" class="rule">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">How it works</p><h2>A clear, five-step installation.</h2></div>
+      <p>Every engagement follows the same sequence, so you know exactly what happens and when.</p>
+    </div>
+    <div class="process">
+      <div class="step"><h3>Discovery call</h3><p>Thirty minutes on your business, your priorities and what's off-limits.</p></div>
+      <div class="step"><h3>Scoping</h3><p>We agree in writing on the workflows, the accounts involved and your approval rules.</p></div>
+      <div class="step"><h3>Installation</h3><p>Your Mac mini is secured and set up, with your own AI account and a spend cap.</p></div>
+      <div class="step"><h3>Training</h3><p>The team learns your voice, offers, frameworks and common questions.</p></div>
+      <div class="step"><h3>Go live</h3><p>Hands-on support after launch, plus owner training so you're fully in command.</p></div>
+    </div>
+    <div class="promise">
+      <div class="seal" aria-hidden="true">✓</div>
+      <div>
+        <h3>Live in 30 days, or I keep working.</h3>
+        <p>The workflows we agree on in scoping are live within 30 days of kickoff, or I keep working at no charge until they are.</p>
+        <small>Requires timely access to your accounts and attendance at setup sessions. This is a delivery guarantee, not a revenue guarantee.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trust" class="trust">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">Security</p><h2>Built to be trusted with your inbox.</h2></div>
+      <p>Most do-it-yourself AI setups give one assistant your email, the open web and the power to send. Yours is split so that a bad email or web page can't take control of it.</p>
+    </div>
+    <div class="diagram" aria-label="How work flows through your workforce">
+      <div class="node"><span class="k">Readers</span><b>See the outside world</b><p>Read your email, calendar and the web. They can't send anything, anywhere.</p></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><span class="k">Manager</span><b>Never reads raw content</b><p>Works from clean summaries, prepares drafts and asks you first.</p></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node you"><span class="k">You</span><b>Approve with a tap</b><p>Every email, post or message waits for your ✅ by text.</p></div>
+    </div>
+    <div class="trust-grid">
+      <div><h3>Your machine, your accounts</h3><p>It runs on a Mac mini you own, with your own AI account. You own the hardware and the data.</p></div>
+      <div><h3>Audited every day</h3><p>Configuration, backups, updates and blocked actions are checked daily, and you hear about anything unusual.</p></div>
+      <div><h3>Vetted software only</h3><p>Pinned, hardened software and no marketplace add-ons. Spend caps on every AI account.</p></div>
+    </div>
+    <p class="never"><b>Never included:</b> automatic sending, purchases or anything financial, AI phone calls, AI-written testimonials, ad spend or group-chat automation.</p>
+  </div>
+</section>
+
+<section id="investment">
+  <div class="wrap">
+    <div class="head">
+      <div><p class="eyebrow">Investment</p><h2>One installation. A workforce you own.</h2></div>
+      <p>A fixed fee for the full installation, not an hourly meter. Founding pricing is reserved for the first five clients.</p>
+    </div>
+    <div class="ledger">
+      <div class="sheet">
+        <div class="title"><h3>Full Workforce</h3><div><div class="price">$10,000<s>$15,000</s></div><div class="sub">Founding client price</div></div></div>
+        <ul class="lines">
+          <li><span>Manager you text: morning brief, delegation, approvals</span><span>Included</span></li>
+          <li><span>Inbox and briefing assistant</span><span>Included</span></li>
+          <li><span>Sales follow-up: call recaps, follow-ups, CRM notes, new-lead replies</span><span>Included</span></li>
+          <li><span>Old-lead reactivation with compliance check</span><span>Included</span></li>
+          <li><span>Content from your videos and recordings</span><span>Included</span></li>
+          <li><span>Research and security watch</span><span>Included</span></li>
+          <li><span>Trained on your voice, offers and frameworks</span><span>Full</span></li>
+          <li><span>Hands-on support after launch</span><span>30 days</span></li>
+        </ul>
+        <p class="atcost">You buy two things directly, at cost: a Mac mini (about $600 to $900) and your own AI usage (about $40 to $80 a month).</p>
+      </div>
+      <div class="side">
+        <h3>Founding clients</h3>
+        <p>The first five clients get founding pricing in exchange for participation:</p>
+        <ul><li>Honest feedback along the way</li><li>A recorded case-study interview</li><li>Permission to share results you approve</li><li>Referrals, if you're happy</li></ul>
+        <p>A $2,500 deposit reserves a founding spot and is credited to your installation.</p>
+        <p class="note">Your price never depends on a positive review. Care plans for ongoing support are available after launch.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="founder" class="founder rule">
+  <div class="wrap">
+    <div class="portrait" role="img" aria-label="Mark Rehling monogram"><span class="mono">MR</span></div>
+    <div class="letter">
+      <p class="eyebrow">From the founder</p>
+      <h2>I run this workforce in my own business first.</h2>
+      <p>I've spent about thirty years in business technology. When capable AI arrived, I didn't want another app to manage. I wanted a team I could text, one that does the drafting and the research and asks before it acts.</p>
+      <p>So I built one. It briefs me at 6:30 every morning, researches the people I'm about to meet and keeps watch over my accounts. Every client installation is built from that same tested setup, then trained on your business.</p>
+      <p>I install it myself, on hardware you own, and I stay with you until it works the way we agreed.</p>
+      <div class="sig">Mark Rehling<small>Founder, Yokefellow AI</small></div>
+      <blockquote class="verse">“And I intreat thee also, true yokefellow.” Paul asked a trusted partner to help carry the work. That's the job, and it's where the name comes from.<cite>PHILIPPIANS 4:3, KJV</cite></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="rule">
+  <div class="wrap">
+    <div class="head"><div><p class="eyebrow">Questions</p><h2>Before you book.</h2></div></div>
+    <div class="faq">
+      <details><summary>Do I need to be technical?</summary><p>No. You text your workforce the way you'd text an employee. I handle the installation, the security and the training.</p></details>
+      <details><summary>Will it send anything on its own?</summary><p>No. Every outbound email, post or message waits for your approval by text. The workforce prepares; you decide.</p></details>
+      <details><summary>Does it replace my staff?</summary><p>No. It does the drafting work: the recaps, the first drafts, the research and the reminders. Your people review, decide and build relationships.</p></details>
+      <details><summary>What do I need to buy?</summary><p>A Mac mini (about $600 to $900) and your own AI account (about $40 to $80 a month). You buy them directly, at cost, so you own them.</p></details>
+      <details><summary>How long does it take?</summary><p>The workflows we agree on in scoping are live within 30 days of kickoff, as long as I have timely access and you attend the setup sessions.</p></details>
+      <details><summary>What happens after launch?</summary><p>Full Workforce includes 30 days of hands-on support. After that, a care plan keeps your workforce updated, monitored and improving.</p></details>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Next step</p>
+      <h2>Start with a 30-minute discovery call.</h2>
+      <p>We'll look at where your week goes, what your workforce would take off your plate and whether it's a fit. No pressure and no obligation.</p>
+    </div>
+    <div class="card">
+      <span class="k">Email to book</span>
+      <div class="email"><code id="addr">support@yokefellowai.com</code><button type="button" id="copy">Copy</button></div>
+      <span class="k">What to include</span>
+      <ol><li>Your name and business</li><li>The work that takes too much of your week</li><li>Two or three times that suit you</li></ol>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap"><span>© 2026 Yokefellow AI™. yokefellowai.com</span><span>“I am your AI Workforce.”</span></div>
+</footer>
+
+<script>
+(function(){
+  var S={
+    morning:[["stamp","Today 6:30 AM"],["in","<span class='tag'>Morning brief</span>Good morning. Here's today:<ul><li>3 calls. A brief on each person is below.</li><li>2 follow-ups from yesterday, drafted and ready.</li><li>New lead at 11:48 PM. Reply drafted.</li><li>🛡️ All clear overnight. Team audit passed.</li></ul>"],["out","✅ Send both follow-ups"],["in","Done. Both sent from your inbox and logged in your CRM."]],
+    precall:[["stamp","Today 9:45 AM"],["in","<span class='tag'>Before your 10:00</span>Dana Whitfield runs a 6-person coaching practice and launched a group program in May. Her site offers free consults but shows no follow-up after them."],["in","Suggested opener: “What happens after someone books a free consult and doesn't buy?”"],["out","Perfect, thanks"]],
+    postcall:[["stamp","Today 10:42 AM"],["in","<span class='tag'>Call recap</span>Your call with Dana is done. I drafted:<ul><li>A follow-up email with the two options you discussed</li><li>CRM notes and a reminder for Friday</li></ul>Want to see the email?"],["out","Show me"],["in","“Hi Dana, thanks for walking me through your consult process today…” (full draft attached)"],["out","✅ Send it"],["in","Sent. Friday reminder set."]],
+    watch:[["stamp","Today 2:14 PM"],["in alert","<span class='tag'>🛡️ Was this you?</span>New sign-in to your email from Chrome on Windows near Phoenix, AZ, at 2:11 PM. It doesn't match your usual devices."],["out","No, that wasn't me"],["in alert","Change your password now from your own device, then sign out other sessions. Here are the steps."]]
+  };
+  var th=document.getElementById('thread'),tabs=[].slice.call(document.querySelectorAll('.tabs button'));
+  if(!th||!tabs.length)return;
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,timers=[];
+  function node(t,h){var el;if(t==="stamp"){el=document.createElement('span');el.className='stamp';el.textContent=h;return el}el=document.createElement('div');el.className='msg '+t+' pop';el.innerHTML=h;return el}
+  function play(k){
+    timers.forEach(clearTimeout);timers=[];
+    tabs.forEach(function(b){b.setAttribute('aria-selected',b.dataset.s===k?'true':'false')});
+    th.innerHTML='';var list=S[k];
+    if(reduce){list.forEach(function(m){th.appendChild(node(m[0],m[1]))});return}
+    var t=0;list.forEach(function(m,i){
+      var isIn=m[0].indexOf('in')===0;
+      if(isIn&&i>0){timers.push(setTimeout(function(){var ty=document.createElement('div');ty.className='typing';ty.id='ty';ty.innerHTML='<i></i><i></i><i></i>';th.appendChild(ty)},t));t+=650}
+      timers.push(setTimeout(function(){var ty=document.getElementById('ty');if(ty)ty.remove();th.appendChild(node(m[0],m[1]))},t));
+      t+=isIn?500:700;
+    });
+  }
+  tabs.forEach(function(b){b.addEventListener('click',function(){play(b.dataset.s)})});
+})();
+</script>
+<script>
+(function(){
+  var b=document.getElementById('copy'),a=document.getElementById('addr');
+  if(!b||!a)return;
+  b.addEventListener('click',function(){
+    var t=a.textContent;
+    function done(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1800)}
+    function fallback(){var r=document.createRange();r.selectNodeContents(a);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected';setTimeout(function(){b.textContent='Copy'},1800)}
+    try{navigator.clipboard.writeText(t).then(done,fallback)}catch(e){fallback()}
+  });
+})();
+</script>
+
+</body>
+</html>
