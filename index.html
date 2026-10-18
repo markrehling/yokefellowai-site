@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230A1222'/%3E%3Cpath d='M6 27 Q32 17 58 27' fill='none' stroke='%23D9B46A' stroke-width='5' stroke-linecap='round'/%3E%3Cpath d='M16 26 v9 a7 7 0 0 0 14 0 v-9 M34 26 v9 a7 7 0 0 0 14 0 v-9' fill='none' stroke='%23D9B46A' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="canonical" href="https://yokefellowai.com/">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://yokefellowai.com/">
@@ -12,7 +14,7 @@
 <meta property="og:image" content="https://yokefellowai.com/og.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0A1222">
-<title>Yokefellow AI</title>
+<title>Yokefellow AI | Your private AI workforce, installed on a Mac you own</title>
 <meta name="description" content="Yokefellow AI installs a private AI workforce on a Mac you own: a manager and a team of AI employees, trained on your business. Nothing goes out until you approve it by text.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,6 +66,16 @@ nav.links a:hover{color:var(--ink)}
 .btn-primary{background:var(--brass);color:var(--paper)}
 .btn-primary:hover{filter:brightness(1.08)}
 .tabs button[aria-selected="true"]{background:var(--brass);color:var(--paper)}
+
+/* QA fixes 2026-10-18 */
+.tabs button{padding:.72em 1em;min-height:42px}
+.faq details{padding-block:8px}
+.faq summary{padding-block:12px;min-height:44px;align-items:center}
+.phone .screen{height:520px;min-height:0;display:flex;flex-direction:column}
+.phone .thread{flex:1;overflow-y:auto;scrollbar-width:none}
+.phone .thread::-webkit-scrollbar{display:none}
+.card .actions{display:flex;flex-wrap:wrap;gap:10px;margin-block:4px 18px}
+.nb{white-space:nowrap}
 /* Hero */
 .hero{background:radial-gradient(60% 70% at 78% 30%,rgba(90,140,255,.20),transparent 70%)}
 .hero{padding-block:clamp(48px,8vw,104px) clamp(56px,8vw,96px)}
@@ -429,12 +441,13 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   <div class="wrap">
     <div>
       <p class="eyebrow">Next step</p>
-      <h2>Start with a 30-minute discovery call.</h2>
+      <h2>Start with a <span class="nb">30&#8209;minute</span> discovery call.</h2>
       <p>We'll look at where your week goes, what your workforce would take off your plate and whether it's a fit. No pressure and no obligation.</p>
     </div>
     <div class="card">
       <span class="k">Email to book</span>
       <div class="email"><code id="addr">support@yokefellowai.com</code><button type="button" id="copy">Copy</button></div>
+      <div class="actions"><a class="btn btn-primary" href="mailto:support@yokefellowai.com?subject=Discovery%20call%20request">Email to book a call</a></div>
       <span class="k">What to include</span>
       <ol><li>Your name and business</li><li>The work that takes too much of your week</li><li>Two or three times that suit you</li></ol>
     </div>
